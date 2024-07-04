@@ -11,6 +11,7 @@
 		0D99A77A2C35AF6000651903 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99A7792C35AF6000651903 /* Character.swift */; };
 		0D99A77D2C35B0B500651903 /* Death.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99A77C2C35B0B500651903 /* Death.swift */; };
 		0DA1B8152C370A3D00387123 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA1B8142C370A3D00387123 /* FetchService.swift */; };
+		0DA1B8172C370DE200387123 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA1B8162C370DE200387123 /* ViewModel.swift */; };
 		0DC749912C3580A000D3B586 /* BBQuotes_SwiftUI_iOS17App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC749902C3580A000D3B586 /* BBQuotes_SwiftUI_iOS17App.swift */; };
 		0DC749932C3580A000D3B586 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC749922C3580A000D3B586 /* ContentView.swift */; };
 		0DC749952C3580A100D3B586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DC749942C3580A100D3B586 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 		0D99A7792C35AF6000651903 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		0D99A77C2C35B0B500651903 /* Death.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Death.swift; sourceTree = "<group>"; };
 		0DA1B8142C370A3D00387123 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
+		0DA1B8162C370DE200387123 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0DC7498D2C3580A000D3B586 /* BBQuotes-SwiftUI-iOS17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BBQuotes-SwiftUI-iOS17.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC749902C3580A000D3B586 /* BBQuotes_SwiftUI_iOS17App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBQuotes_SwiftUI_iOS17App.swift; sourceTree = "<group>"; };
 		0DC749922C3580A000D3B586 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				0DC749902C3580A000D3B586 /* BBQuotes_SwiftUI_iOS17App.swift */,
 				0DC749922C3580A000D3B586 /* ContentView.swift */,
 				0DA1B8142C370A3D00387123 /* FetchService.swift */,
+				0DA1B8162C370DE200387123 /* ViewModel.swift */,
 				0D99A77B2C35AF6600651903 /* Model */,
 				0DC749942C3580A100D3B586 /* Assets.xcassets */,
 				0DC7499E2C3581A400D3B586 /* SampleData */,
@@ -183,6 +186,7 @@
 				0DC749912C3580A000D3B586 /* BBQuotes_SwiftUI_iOS17App.swift in Sources */,
 				0DA1B8152C370A3D00387123 /* FetchService.swift in Sources */,
 				0D99A77A2C35AF6000651903 /* Character.swift in Sources */,
+				0DA1B8172C370DE200387123 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

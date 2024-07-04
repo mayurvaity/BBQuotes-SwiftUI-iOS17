@@ -17,8 +17,8 @@ struct FetchService {
     
     func fetchQuote(from show: String) async throws -> Quote {
         //build fetch url
-        var quoteURL = baseURL.appending(path: "quotes/random")
-        var fetchURL = quoteURL.appending(queryItems: [URLQueryItem(name: "production", value: show)])
+        let quoteURL = baseURL.appending(path: "quotes/random")
+        let fetchURL = quoteURL.appending(queryItems: [URLQueryItem(name: "production", value: show)])
         
         //fetch data
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
@@ -37,8 +37,8 @@ struct FetchService {
     
     func fetchCharacter(_ name: String) async throws -> Character {
         //build fetch url
-        var characterURL = baseURL.appending(path: "characters")
-        var fetchURL = characterURL.appending(queryItems: [URLQueryItem(name: "name", value: name)])
+        let characterURL = baseURL.appending(path: "characters")
+        let fetchURL = characterURL.appending(queryItems: [URLQueryItem(name: "name", value: name)])
         
         //fetch data
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
@@ -49,7 +49,7 @@ struct FetchService {
         }
         
         //decode data
-        var decoder = JSONDecoder()
+        let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         let character = try decoder.decode([Character].self, from: data)
@@ -60,7 +60,7 @@ struct FetchService {
     
     func fetchDeath(for character: String) async throws -> Death? {
         //build fetch url
-        var fetchURL = baseURL.appending(path: "deaths")
+        let fetchURL = baseURL.appending(path: "deaths")
         
         //fetch data
         let (data, response) = try await URLSession.shared.data(from: fetchURL)
@@ -71,7 +71,7 @@ struct FetchService {
         }
         
         //decode data
-        var decoder = JSONDecoder()
+        let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         let deaths = try decoder.decode([Death].self, from: data)
