@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            Text("Breaking Bad View")
+            QuoteView(show: "Breaking Bad")
                 .toolbarBackground(.visible, for: .tabBar) // to show tabview bar when clicked on this tab
                 .tabItem {
                     //tabItem - to add tabs on tabView
@@ -19,7 +19,7 @@ struct ContentView: View {
                           systemImage: "tortoise")
                 }
             
-            Text("Better Call Saul View")
+            QuoteView(show: "Better Call Saul")
                 .toolbarBackground(.visible, for: .tabBar)
                 .tabItem {
                     Label("Better Call Saul",

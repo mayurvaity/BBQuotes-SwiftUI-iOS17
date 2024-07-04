@@ -56,7 +56,7 @@ class ViewModel {
             character.death = try await fetcher.fetchDeath(for: quote.character)
             
             //setting status to success
-            status = .success
+            status = .success 
         } catch {
             //setting status to failed if anything fails while fetching data from web
             status = .failed(error: error)
