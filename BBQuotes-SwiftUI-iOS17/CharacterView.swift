@@ -79,10 +79,43 @@ struct CharacterView: View {
                         
                         Divider()
                         
+                        //A view that shows or hides another content view, based on the state of a disclosure control.
+                        DisclosureGroup("Status (Spoiler Alert!)") {
+                            VStack(alignment: .leading) {
+                                //status dead/ alive
+                                Text(character.status)
+                                    .font(.title2)
+                                
+                                //death details
+                                if let death = character.death {
+                                    //death image
+                                    //to directly download image from url and show on the view
+                                    AsyncImage(url: death.image) { image in
+                                        image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .clipShape(.rect(cornerRadius: 15))
+                                        
+                                    } placeholder: {
+                                        //to show loading icon while image is being downloaded
+                                        ProgressView()
+                                    }
+                                    
+                                    //death details
+                                    Text("How: \(death.details)")
+                                        .padding(.bottom, 7)
+                                    
+                                    Text("Last words: \"\(death.lastWords)\"")
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .tint(.primary)
                         
                     }
                     .frame(width: geo.size.width/1.25, alignment: .leading) //to set width of vstack and alignment for all the view within it
 //                    .border(.red)
+                    .padding(.bottom, 50)
                 }
                 .scrollIndicators(.hidden) // to hide the scrollbar
             }
