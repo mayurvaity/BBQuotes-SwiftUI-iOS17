@@ -25,6 +25,15 @@ struct ContentView: View {
                     Label("Better Call Saul",
                           systemImage: "briefcase")
                 }
+            
+            QuoteView(show: "El Camino")
+                .toolbarBackground(.visible, for: .tabBar) // to show tabview bar when clicked on this tab
+                .tabItem {
+                    //tabItem - to add tabs on tabView
+                    //Label - what to show for current tab
+                    Label("El Camino",
+                          systemImage: "car")
+                }
         }
         .preferredColorScheme(.dark) //this makes app theme dark, inspite of what theme is set on user's iphone 
     }

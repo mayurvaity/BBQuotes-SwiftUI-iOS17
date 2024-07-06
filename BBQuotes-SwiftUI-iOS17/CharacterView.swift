@@ -21,15 +21,22 @@ struct CharacterView: View {
                 
                 //ScrollView - to add image and content
                 ScrollView {
-                    //to directly download image from url and show on the view
-                    AsyncImage(url: character.images[0]) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                    } placeholder: {
-                        //to show loading icon while image is being downloaded
-                        ProgressView()
+                    //TabView - to show multiple images
+                    TabView {
+                        ForEach(character.images, id: \.self) {
+                            characterImageURL in
+                            //to directly download image from url and show on the view
+                            AsyncImage(url: characterImageURL) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } placeholder: {
+                                //to show loading icon while image is being downloaded
+                                ProgressView()
+                            }
+                        }
                     }
+                    .tabViewStyle(.page) //to set tabvwstyle made for images (page style tab view), for tab bar it is .automatic
                     .frame(width: geo.size.width/1.2,
                            height: geo.size.height/1.7) //to stop overflow of image below frame set for zstack
                     .clipShape(.rect(cornerRadius: 25))
