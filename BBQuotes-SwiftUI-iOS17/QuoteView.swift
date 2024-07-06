@@ -23,44 +23,80 @@ struct QuoteView: View {
                 Image(show.lowercased().replacingOccurrences(of: " ", with: ""))
                     .resizable()
                     .frame(width: geo.size.width * 2.7,
-                           height: geo.size.height * 1.2)
+                           height: geo.size.height * 1.2) //this frame overrides restrictions put by frame of zstack, that's why we need another frame for vstack
                 
                 VStack {
-                    Text("\"\(vm.quote.quote)\"")
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .background(.black.opacity(0.5))
-                        .clipShape(.rect(cornerRadius: 25))
-                        .padding(.horizontal)
-                    
-                    ZStack(alignment: .bottom) {
-                        //to directly download image from url and show on the view
-                        AsyncImage(url: vm.character.images[0]) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                        } placeholder: {
-                            //to show loading icon while image is being downloaded
-                            ProgressView()
-                        }
-                        .frame(width: geo.size.width/1.1,
-                               height: geo.size.height/1.8) //to stop overflow of image below frame set for zstack
+                    VStack {
+                        Spacer(minLength: 60) //to maintain min distance from top of the screen
                         
-                        //to add character name on image
-                        Text(vm.quote.character)
-                            .foregroundStyle(.white)
-                            .padding(10)
-                            .frame(maxWidth: .infinity)
-                            .background(.ultraThinMaterial) //to add translucent bg
+                        switch vm.status {
+                        case .notStarted:
+                            EmptyView()
+                        case .fetching:
+                            ProgressView()
+                        case .success:
+                            Text("\"\(vm.quote.quote)\"")
+                                .minimumScaleFactor(0.5) //to set minimum font size if a quote (a large one) could not fit in there
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.white)
+                                .padding()
+                                .background(.black.opacity(0.5))
+                                .clipShape(.rect(cornerRadius: 25))
+                                .padding(.horizontal)
+                            
+                            ZStack(alignment: .bottom) {
+                                //to directly download image from url and show on the view
+                                AsyncImage(url: vm.character.images[0]) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                } placeholder: {
+                                    //to show loading icon while image is being downloaded
+                                    ProgressView()
+                                }
+                                .frame(width: geo.size.width/1.1,
+                                       height: geo.size.height/1.8) //to stop overflow of image below frame set for zstack
+                                
+                                //to add character name on image
+                                Text(vm.quote.character)
+                                    .foregroundStyle(.white)
+                                    .padding(10)
+                                    .frame(maxWidth: .infinity)
+                                    .background(.ultraThinMaterial) //to add translucent bg
+                            }
+                            .frame(width: geo.size.width/1.1,
+                                   height: geo.size.height/1.8)
+                            .clipShape(.rect(cornerRadius: 50))
+                        case .failed(let error):
+                            Text(error.localizedDescription)
+                        }
+                        
+                        Spacer()
+                        
                     }
-                    .frame(width: geo.size.width/1.1,
-                           height: geo.size.height/1.8)
-                    .clipShape(.rect(cornerRadius: 50))
+                    
+                    //get quote button
+                    Button {
+                        //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
+                        Task {
+                            //calling get data fn from viewmodel, which will inturn fetch quote data from urls and 
+                            await vm.getData(for: show)
+                        }
+                    } label: {
+                        Text("Get Random Quote")
+                            .font(.title)
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background(Color("\(show.replacingOccurrences(of: " ", with: ""))Button"))
+                            .clipShape(.rect(cornerRadius: 7))
+                            .shadow(color: Color("\(show.replacingOccurrences(of: " ", with: ""))Shadow"), radius: 2)
+                    }
+                    
+                    Spacer(minLength: 95) //minlength - this spacer viw has to take space of at least 95
                     
                 }
-                .frame(width: geo.size.width) //to keep all the view ini the vstack within width
-                    
+                .frame(width: geo.size.width, height: geo.size.height) //to keep all the view in the vstack within width and height
+                
             }
             .frame(width: geo.size.width, height: geo.size.height) //to bring phone to center of the image
         }
