@@ -15,6 +15,9 @@ struct QuoteView: View {
     //to keep selected show value
     let show: String
     
+    //to store bool of if to show character info
+    @State var showCharacterInfo: Bool = false
+    
     var body: some View {
         //GeometryReader - to get dimensions of the device
         GeometryReader { geo in
@@ -32,8 +35,10 @@ struct QuoteView: View {
                         switch vm.status {
                         case .notStarted:
                             EmptyView()
+                            
                         case .fetching:
                             ProgressView()
+                            
                         case .success:
                             Text("\"\(vm.quote.quote)\"")
                                 .minimumScaleFactor(0.5) //to set minimum font size if a quote (a large one) could not fit in there
@@ -67,8 +72,14 @@ struct QuoteView: View {
                             .frame(width: geo.size.width/1.1,
                                    height: geo.size.height/1.8)
                             .clipShape(.rect(cornerRadius: 50))
+                            .onTapGesture {
+                                //toggling show character view var property when tapped up on this view
+                                showCharacterInfo.toggle()
+                            }
+                            
                         case .failed(let error):
                             Text(error.localizedDescription)
+                            
                         }
                         
                         Spacer()
@@ -79,7 +90,7 @@ struct QuoteView: View {
                     Button {
                         //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
                         Task {
-                            //calling get data fn from viewmodel, which will inturn fetch quote data from urls and 
+                            //calling get data fn from viewmodel, which will inturn fetch quote data from urls and
                             await vm.getData(for: show)
                         }
                     } label: {
@@ -101,6 +112,11 @@ struct QuoteView: View {
             .frame(width: geo.size.width, height: geo.size.height) //to bring phone to center of the image
         }
         .ignoresSafeArea()
+        .sheet(isPresented: $showCharacterInfo, content: {
+            //to show character view in Modal form when value of $showCharacterInfo gets changed 
+            CharacterView(character: vm.character,
+                          show: show)
+        })
     }
     
     

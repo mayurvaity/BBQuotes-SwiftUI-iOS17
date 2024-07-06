@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D5D8E802C39AB5D0034D55F /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5D8E7F2C39AB5D0034D55F /* CharacterView.swift */; };
 		0D99A7782C35AE8100651903 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99A7772C35AE8100651903 /* Quote.swift */; };
 		0D99A77A2C35AF6000651903 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99A7792C35AF6000651903 /* Character.swift */; };
 		0D99A77D2C35B0B500651903 /* Death.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99A77C2C35B0B500651903 /* Death.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D5D8E7F2C39AB5D0034D55F /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		0D99A7772C35AE8100651903 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		0D99A7792C35AF6000651903 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		0D99A77C2C35B0B500651903 /* Death.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Death.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				0DC749922C3580A000D3B586 /* ContentView.swift */,
 				0DA1B8162C370DE200387123 /* ViewModel.swift */,
 				0DA1B8182C37163000387123 /* QuoteView.swift */,
+				0D5D8E7F2C39AB5D0034D55F /* CharacterView.swift */,
 				0DA1B8142C370A3D00387123 /* FetchService.swift */,
 				0D99A77B2C35AF6600651903 /* Model */,
 				0DC749942C3580A100D3B586 /* Assets.xcassets */,
@@ -189,6 +192,7 @@
 				0DA1B8192C37163000387123 /* QuoteView.swift in Sources */,
 				0DC749912C3580A000D3B586 /* BBQuotes_SwiftUI_iOS17App.swift in Sources */,
 				0DA1B8152C370A3D00387123 /* FetchService.swift in Sources */,
+				0D5D8E802C39AB5D0034D55F /* CharacterView.swift in Sources */,
 				0D99A77A2C35AF6000651903 /* Character.swift in Sources */,
 				0DA1B8172C370DE200387123 /* ViewModel.swift in Sources */,
 			);
