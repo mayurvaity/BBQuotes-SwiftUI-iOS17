@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D5D8E802C39AB5D0034D55F /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5D8E7F2C39AB5D0034D55F /* CharacterView.swift */; };
+		0D5D8E822C39BAF50034D55F /* sampleepisode.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D5D8E812C39BAF50034D55F /* sampleepisode.json */; };
 		0D99A7782C35AE8100651903 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99A7772C35AE8100651903 /* Quote.swift */; };
 		0D99A77A2C35AF6000651903 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99A7792C35AF6000651903 /* Character.swift */; };
 		0D99A77D2C35B0B500651903 /* Death.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D99A77C2C35B0B500651903 /* Death.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		0D5D8E7F2C39AB5D0034D55F /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		0D5D8E812C39BAF50034D55F /* sampleepisode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleepisode.json; sourceTree = "<group>"; };
 		0D99A7772C35AE8100651903 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		0D99A7792C35AF6000651903 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		0D99A77C2C35B0B500651903 /* Death.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Death.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		0DC7499E2C3581A400D3B586 /* SampleData */ = {
 			isa = PBXGroup;
 			children = (
+				0D5D8E812C39BAF50034D55F /* sampleepisode.json */,
 				0DC749A02C3581CD00D3B586 /* samplecharacter.json */,
 				0DC7499F2C3581CD00D3B586 /* sampledeath.json */,
 				0DC749A12C3581CD00D3B586 /* samplequote.json */,
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DC749982C3580A100D3B586 /* Preview Assets.xcassets in Resources */,
+				0D5D8E822C39BAF50034D55F /* sampleepisode.json in Resources */,
 				0DC749A22C3581CD00D3B586 /* sampledeath.json in Resources */,
 				0DC749952C3580A100D3B586 /* Assets.xcassets in Resources */,
 				0DC749A42C3581CD00D3B586 /* samplequote.json in Resources */,
