@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            QuoteView(show: Constants.bbName)
+            FetchView(show: Constants.bbName)
                 .toolbarBackground(.visible, for: .tabBar) // to show tabview bar when clicked on this tab
                 .tabItem {
                     //tabItem - to add tabs on tabView
@@ -19,14 +19,14 @@ struct ContentView: View {
                           systemImage: "tortoise")
                 }
             
-            QuoteView(show: Constants.bcsName)
+            FetchView(show: Constants.bcsName)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tabItem {
                     Label(Constants.bcsName,
                           systemImage: "briefcase")
                 }
             
-            QuoteView(show: Constants.ecName)
+            FetchView(show: Constants.ecName)
                 .toolbarBackground(.visible, for: .tabBar) // to show tabview bar when clicked on this tab
                 .tabItem {
                     //tabItem - to add tabs on tabView

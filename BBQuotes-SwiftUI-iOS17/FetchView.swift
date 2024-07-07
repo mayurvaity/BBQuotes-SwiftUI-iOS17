@@ -1,5 +1,5 @@
 //
-//  QuoteView.swift
+//  FetchView.swift
 //  BBQuotes-SwiftUI-iOS17
 //
 //  Created by Mayur Vaity on 04/07/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QuoteView: View {
+struct FetchView: View {
     
     //viewmodel obj
     let vm = ViewModel()
@@ -39,7 +39,7 @@ struct QuoteView: View {
                         case .fetching:
                             ProgressView()
                             
-                        case .success:
+                        case .successQuote:
                             Text("\"\(vm.quote.quote)\"")
                                 .minimumScaleFactor(0.5) //to set minimum font size if a quote (a large one) could not fit in there
                                 .multilineTextAlignment(.center)
@@ -76,33 +76,60 @@ struct QuoteView: View {
                                 //toggling show character view var property when tapped up on this view
                                 showCharacterInfo.toggle()
                             }
+                        
+                        case .successEpisode:
+                            EpisodeView(episode: vm.episode)
                             
                         case .failed(let error):
                             Text(error.localizedDescription)
                             
                         }
                         
-                        Spacer()
+                        //minLength - to specify minimum space size 
+                        Spacer(minLength: 20)
                         
                     }
                     
-                    //get quote button
-                    Button {
-                        //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
-                        Task {
-                            //calling get data fn from viewmodel, which will inturn fetch quote data from urls and
-                            await vm.getQuoteData(for: show)
+                    HStack {
+                        //get quote button
+                        Button {
+                            //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
+                            Task {
+                                //calling get data fn from viewmodel, which will inturn fetch quote data from urls and
+                                await vm.getQuoteData(for: show)
+                            }
+                        } label: {
+                            Text("Get Random Quote")
+                                .font(.title3)
+                                .foregroundStyle(.white)
+                                .padding()
+                                .background(Color("\(show.removeSpaces())Button"))
+                                .clipShape(.rect(cornerRadius: 7))
+                                .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
                         }
-                    } label: {
-                        Text("Get Random Quote")
-                            .font(.title)
-                            .foregroundStyle(.white)
-                            .padding()
-                            .background(Color("\(show.removeSpaces())Button"))
-                            .clipShape(.rect(cornerRadius: 7))
-                            .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
+                        
+                        Spacer()
+                        
+                        //get episode button
+                        Button {
+                            //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
+                            Task {
+                                //calling get data fn from viewmodel, which will inturn fetch episode data from urls and
+                                await vm.getEpisodeData(for: show)
+                            }
+                        } label: {
+                            Text("Get Random Episode")
+                                .font(.title3)
+                                .foregroundStyle(.white)
+                                .padding()
+                                .background(Color("\(show.removeSpaces())Button"))
+                                .clipShape(.rect(cornerRadius: 7))
+                                .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
+                        }
                     }
+                    .padding(.horizontal, 30)
                     
+                    //spacer below buttons
                     Spacer(minLength: 95) //minlength - this spacer viw has to take space of at least 95
                     
                 }
@@ -123,6 +150,6 @@ struct QuoteView: View {
 }
 
 #Preview {
-    QuoteView(show: Constants.bbName)
+    FetchView(show: Constants.bbName)
         .preferredColorScheme(.dark)
 }
