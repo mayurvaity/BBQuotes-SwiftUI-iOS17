@@ -91,7 +91,7 @@ struct QuoteView: View {
                         //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
                         Task {
                             //calling get data fn from viewmodel, which will inturn fetch quote data from urls and
-                            await vm.getData(for: show)
+                            await vm.getQuoteData(for: show)
                         }
                     } label: {
                         Text("Get Random Quote")

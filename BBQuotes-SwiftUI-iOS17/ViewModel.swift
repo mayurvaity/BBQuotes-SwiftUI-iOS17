@@ -24,9 +24,10 @@ class ViewModel {
     //creating obj of FetchService
     private let fetcher = FetchService()
     
-    //vars to store quote and character, to be used in view
+    //vars to store quote, character & episode, to be used in view
     var quote: Quote
     var character: Character
+    var episode: Episode
     
     //initializing vars with sample data
     init() {
@@ -38,10 +39,13 @@ class ViewModel {
         
         let characterData = try! Data(contentsOf: Bundle.main.url(forResource: "samplecharacter", withExtension: "json")!)
         character = try! decoder.decode(Character.self, from: characterData)
+        
+        let episodeData = try! Data(contentsOf: Bundle.main.url(forResource: "sampleepisode", withExtension: "json")!)
+        episode = try! decoder.decode(Episode.self, from: episodeData)
     }
     
-    //to get data based on show selected
-    func getData(for show: String) async {
+    //to get random quote data based on show selected
+    func getQuoteData(for show: String) async {
         //updating status
         status = .fetching
         
@@ -63,4 +67,22 @@ class ViewModel {
         }
     }
     
+    //to get random episode based on selected show
+    func getEpisodeData(for show: String) async {
+        //updating status
+        status = .fetching
+        
+        do {
+            //checking if episode data is available, if available assigning it to the episode var
+            if let unwrappedEpisode = try await fetcher.fetchEpisode(from: show) {
+                episode = unwrappedEpisode
+                
+                //setting status to success
+                status = .success
+            }
+        } catch {
+            //setting status to failed if anything fails while fetching data from web
+            status = .failed(error: error)
+        }
+    }
 }

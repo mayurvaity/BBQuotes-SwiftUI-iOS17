@@ -58,6 +58,7 @@ struct FetchService {
         return character[0]
     }
     
+    
     func fetchDeath(for character: String) async throws -> Death? {
         //build fetch url
         let fetchURL = baseURL.appending(path: "deaths")
@@ -85,5 +86,31 @@ struct FetchService {
         //return quote
         return nil
     }
+    
+    
+    //as data we get from url can be empty, return type has been made optional
+    func fetchEpisode(from show: String) async throws -> Episode? {
+        //build fetch url
+        let episodeURL = baseURL.appending(path: "episodes")
+        let fetchURL = episodeURL.appending(queryItems: [URLQueryItem(name: "production", value: show)])
+        
+        //fetch data
+        let (data, response) = try await URLSession.shared.data(from: fetchURL)
+        
+        //handle response
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw FetchError.badResponse
+        }
+        
+        //decode data
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        let episodes = try decoder.decode([Episode].self, from: data)
+        
+        //randomElement - to return any single element from array episodes
+        return episodes.randomElement()
+    }
+    
     
 }
