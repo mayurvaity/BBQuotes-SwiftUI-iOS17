@@ -43,7 +43,9 @@ class ViewModel {
         
         let episodeData = try! Data(contentsOf: Bundle.main.url(forResource: "sampleepisode", withExtension: "json")!)
         episode = try! decoder.decode(Episode.self, from: episodeData)
+        
     }
+   
     
     //to get random quote data based on show selected
     func getQuoteData(for show: String) async {

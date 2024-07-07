@@ -51,7 +51,8 @@ struct FetchView: View {
                             
                             ZStack(alignment: .bottom) {
                                 //to directly download image from url and show on the view
-                                AsyncImage(url: vm.character.images[0]) { image in
+                                //randomElement - select random element from images array 
+                                AsyncImage(url: vm.character.images.randomElement()) { image in
                                     image
                                         .resizable()
                                         .scaledToFill()
@@ -76,7 +77,7 @@ struct FetchView: View {
                                 //toggling show character view var property when tapped up on this view
                                 showCharacterInfo.toggle()
                             }
-                        
+                            
                         case .successEpisode:
                             EpisodeView(episode: vm.episode)
                             
@@ -85,7 +86,7 @@ struct FetchView: View {
                             
                         }
                         
-                        //minLength - to specify minimum space size 
+                        //minLength - to specify minimum space size
                         Spacer(minLength: 20)
                         
                     }
@@ -140,13 +141,13 @@ struct FetchView: View {
         }
         .ignoresSafeArea()
         .sheet(isPresented: $showCharacterInfo, content: {
-            //to show character view in Modal form when value of $showCharacterInfo gets changed 
+            //to show character view in Modal form when value of $showCharacterInfo gets changed
             CharacterView(character: vm.character,
                           show: show)
         })
+        
+        
     }
-    
-    
 }
 
 #Preview {
