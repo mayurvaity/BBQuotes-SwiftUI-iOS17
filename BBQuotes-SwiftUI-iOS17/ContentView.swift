@@ -10,28 +10,28 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            QuoteView(show: "Breaking Bad")
+            QuoteView(show: Constants.bbName)
                 .toolbarBackground(.visible, for: .tabBar) // to show tabview bar when clicked on this tab
                 .tabItem {
                     //tabItem - to add tabs on tabView
                     //Label - what to show for current tab
-                    Label("Breaking Bad",
+                    Label(Constants.bbName,
                           systemImage: "tortoise")
                 }
             
-            QuoteView(show: "Better Call Saul")
+            QuoteView(show: Constants.bcsName)
                 .toolbarBackground(.visible, for: .tabBar)
                 .tabItem {
-                    Label("Better Call Saul",
+                    Label(Constants.bcsName,
                           systemImage: "briefcase")
                 }
             
-            QuoteView(show: "El Camino")
+            QuoteView(show: Constants.ecName)
                 .toolbarBackground(.visible, for: .tabBar) // to show tabview bar when clicked on this tab
                 .tabItem {
                     //tabItem - to add tabs on tabView
                     //Label - what to show for current tab
-                    Label("El Camino",
+                    Label(Constants.ecName,
                           systemImage: "car")
                 }
         }

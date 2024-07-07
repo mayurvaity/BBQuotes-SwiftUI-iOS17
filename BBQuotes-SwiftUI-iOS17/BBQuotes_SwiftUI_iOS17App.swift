@@ -20,8 +20,8 @@ struct BBQuotes_SwiftUI_iOS17App: App {
  Version 2 Feature List:
  ✅ Add El Camino tab
  ✅ Utilize all character images on CharacterView
- - On CharacterView, auto-scroll to bottom after status is shown
+ ✅ On CharacterView, auto-scroll to bottom after status is shown
  - Fetch Episode data
- - Extend string to get rid of long image and color names
- - Create static constants for show names 
+ ✅ Extend string to get rid of long image and color names
+ ✅ Create static constants for show names
  */
