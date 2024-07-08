@@ -113,4 +113,28 @@ struct FetchService {
     }
     
     
+    //fn to get a random character 
+    func fetchRandomCharacter() async throws -> Character {
+        //build fetch url
+        let fetchURL = baseURL.appending(path: "characters/random")
+        
+        //fetch data
+        let (data, response) = try await URLSession.shared.data(from: fetchURL)
+        
+        //handle response
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw FetchError.badResponse
+        }
+        
+        //decode data
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        let character = try decoder.decode(Character.self, from: data)
+        
+        //return character
+        return character
+    }
+    
+    
 }

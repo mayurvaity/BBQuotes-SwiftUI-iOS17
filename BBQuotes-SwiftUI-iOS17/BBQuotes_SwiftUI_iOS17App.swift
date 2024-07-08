@@ -30,7 +30,7 @@ struct BBQuotes_SwiftUI_iOS17App: App {
  Challenges:
  - Fetch Quote on Launch on FetchView
  ✅ Show random character image (Not just 1st one) on FetchView - for random quote
- - Fetch random Character - add button on FetchView to fetch random character
+ ✅ Fetch random Character - add button on FetchView to fetch random character
  - Fetch random quote from Character on CharacterView - add quote and a button on charater view
  - Fetch Simpsons Quote - randomly when quote is pressed 
  */

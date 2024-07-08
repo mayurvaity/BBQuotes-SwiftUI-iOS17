@@ -15,6 +15,7 @@ class ViewModel {
         case fetching
         case successQuote
         case successEpisode
+        case successCharacter
         case failed(error: Error)
     }
     
@@ -83,6 +84,33 @@ class ViewModel {
                 //setting status to success
                 status = .successEpisode
             }
+        } catch {
+            //setting status to failed if anything fails while fetching data from web
+            status = .failed(error: error)
+        }
+    }
+    
+    //to get random character based on selected show
+    func getCharacterData(for show: String) async {
+        //updating status
+        status = .fetching
+        
+        do {
+            //var to store productions of the character
+            var productions: [String] = []
+            
+            //loop to keep searching for random character until productions list containing our show doesnot show up
+            while(!productions.contains(show)) {
+                //fetching random character
+                character = try await fetcher.fetchRandomCharacter()
+                
+                //setting productions list to our variable, to check while looping
+                productions = character.productions
+                
+            }
+            //setting status to success
+            status = .successCharacter
+            
         } catch {
             //setting status to failed if anything fails while fetching data from web
             status = .failed(error: error)

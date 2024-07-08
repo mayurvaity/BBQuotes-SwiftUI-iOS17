@@ -80,6 +80,9 @@ struct FetchView: View {
                             
                         case .successEpisode:
                             EpisodeView(episode: vm.episode)
+                        
+                        case .successCharacter:
+                            RandomCharacterView(character: vm.character, geo: geo)
                             
                         case .failed(let error):
                             Text(error.localizedDescription)
@@ -100,13 +103,7 @@ struct FetchView: View {
                                 await vm.getQuoteData(for: show)
                             }
                         } label: {
-                            Text("Get Random Quote")
-                                .font(.title3)
-                                .foregroundStyle(.white)
-                                .padding()
-                                .background(Color("\(show.removeSpaces())Button"))
-                                .clipShape(.rect(cornerRadius: 7))
-                                .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
+                            ButtonView(buttonText: "Get Random Quote", show: show)
                         }
                         
                         Spacer()
@@ -119,13 +116,20 @@ struct FetchView: View {
                                 await vm.getEpisodeData(for: show)
                             }
                         } label: {
-                            Text("Get Random Episode")
-                                .font(.title3)
-                                .foregroundStyle(.white)
-                                .padding()
-                                .background(Color("\(show.removeSpaces())Button"))
-                                .clipShape(.rect(cornerRadius: 7))
-                                .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
+                            ButtonView(buttonText: "Get Random Episode", show: show)
+                        }
+                        
+                        Spacer()
+                        
+                        //get episode button
+                        Button {
+                            //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
+                            Task {
+                                //calling get data fn from viewmodel, which will inturn fetch random charcter data from urls and
+                                await vm.getCharacterData(for: show)
+                            }
+                        } label: {
+                            ButtonView(buttonText: "Get Random Character", show: show)
                         }
                     }
                     .padding(.horizontal, 30)
