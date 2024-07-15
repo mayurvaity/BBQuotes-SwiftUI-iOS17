@@ -116,4 +116,22 @@ class ViewModel {
             status = .failed(error: error)
         }
     }
+    
+    //to get random quote data based on character selected
+    func getQuoteDataBy(character: Character) async {
+        //updating status
+        status = .fetching
+        
+        do {
+            //getting random quote data using fetchQuoteBy fn for selected character
+            quote = try await fetcher.fetchQuoteBy(character: character.name)
+            
+            //setting status to success
+            status = .successQuote
+        } catch {
+            //setting status to failed if anything fails while fetching data from web
+            status = .failed(error: error)
+        }
+    }
+    
 }

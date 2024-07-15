@@ -11,6 +11,9 @@ struct CharacterView: View {
     let character: Character
     let show: String
     
+    //viewmodel obj
+    let vm: ViewModel
+    
     var body: some View {
         GeometryReader { geo in
             //ScrollViewReader - this vw will help with scrolling to desired locaiton in the screen
@@ -51,6 +54,35 @@ struct CharacterView: View {
                                 .font(.largeTitle)
                             
                             Text("Portrayed By: \(character.portrayedBy)")
+                                .font(.subheadline)
+                            
+                            Divider() //to put a horizontal line
+                            
+                            HStack {
+                                Text("Random Quote:")
+                                    .font(.title2)
+                                
+                                Spacer()
+                                
+                                Button {
+                                    //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
+                                    Task {
+                                        //calling get data fn from viewmodel, which will inturn fetch quote data from urls and
+                                        await vm.getQuoteDataBy(character: character)
+                                    }
+                                } label: {
+                                    Image(systemName: "quote.bubble")
+                                        .font(.largeTitle)
+                                        .foregroundStyle(.white)
+                                        .padding(5)
+                                        .background(Color("\(show.removeSpaces())Button"))
+                                        .clipShape(.rect(cornerRadius: 7))
+                                        .shadow(color: Color("\(show.removeSpaces())Shadow"), radius: 2)
+                                    
+                                }
+                            }
+                            
+                            Text(vm.quote.quote)
                                 .font(.subheadline)
                             
                             Divider() //to put a horizontal line
@@ -145,5 +177,7 @@ struct CharacterView: View {
 
 #Preview {
     CharacterView(character: ViewModel().character,
-                  show: Constants.bbName)
+                  show: Constants.bbName,
+                  vm: ViewModel()
+    )
 }

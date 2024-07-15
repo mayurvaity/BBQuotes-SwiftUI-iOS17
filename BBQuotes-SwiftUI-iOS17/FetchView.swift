@@ -147,7 +147,8 @@ struct FetchView: View {
         .sheet(isPresented: $showCharacterInfo, content: {
             //to show character view in Modal form when value of $showCharacterInfo gets changed
             CharacterView(character: vm.character,
-                          show: show)
+                          show: show,
+                          vm: vm)
         })
         
         
