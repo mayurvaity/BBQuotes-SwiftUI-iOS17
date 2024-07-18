@@ -10,5 +10,6 @@ import Foundation
 struct Quote: Decodable {
     let quote: String
     let character: String
-    
+    //optional image added to get image data that comes with Simpsons API 
+    let image: URL?
 }

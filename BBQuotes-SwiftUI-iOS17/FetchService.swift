@@ -156,4 +156,24 @@ struct FetchService {
         //return quote
         return quote
     }
+    
+    //fetch quote by character
+    func fetchSimpsonsQuote() async throws -> Quote {
+        //build fetch url
+        let fetchURL = URL(string: "https://thesimpsonsquoteapi.glitch.me/quotes")!
+        
+        //fetch data
+        let (data, response) = try await URLSession.shared.data(from: fetchURL)
+        
+        //handle response
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw FetchError.badResponse
+        }
+        
+        //decode data
+        let quote = try JSONDecoder().decode([Quote].self, from: data)
+        
+        //return quote
+        return quote[0]
+    }
 }

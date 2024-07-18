@@ -52,7 +52,8 @@ struct FetchView: View {
                             ZStack(alignment: .bottom) {
                                 //to directly download image from url and show on the view
                                 //randomElement - select random element from images array 
-                                AsyncImage(url: vm.character.images.randomElement()) { image in
+                                //isSimpsonsQuote - selecting image from either quote data or character data based on TV show (identified using "isSimpsonsQuote" var)
+                                AsyncImage(url: vm.isSimpsonsQuote ? vm.quote.image! : vm.character.images.randomElement()) { image in
                                     image
                                         .resizable()
                                         .scaledToFill()
@@ -77,6 +78,7 @@ struct FetchView: View {
                                 //toggling show character view var property when tapped up on this view
                                 showCharacterInfo.toggle()
                             }
+                            .allowsHitTesting(!vm.isSimpsonsQuote) //to disable onTapGesture when a Simpsons quote is shown 
                             
                         case .successEpisode:
                             EpisodeView(episode: vm.episode)
@@ -100,7 +102,8 @@ struct FetchView: View {
                             //Task - to call async functions, async fns cannot be called in the swiftui directly hence need to b put in task
                             Task {
                                 //calling get data fn from viewmodel, which will inturn fetch quote data from urls and
-                                await vm.getQuoteData(for: show)
+//                                await vm.getQuoteData(for: show)
+                                await vm.getQuoteByRandomising(show: show)
                             }
                         } label: {
                             ButtonView(buttonText: "Get Random Quote", show: show)

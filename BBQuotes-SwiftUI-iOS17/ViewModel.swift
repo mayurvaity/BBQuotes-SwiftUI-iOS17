@@ -31,6 +31,10 @@ class ViewModel {
     var character: Character
     var episode: Episode
     
+    //to manage and identify simpsons quote
+    private(set) var isSimpsonsQuote = false
+    
+    
     //initializing vars with sample data
     init() {
         let decoder = JSONDecoder()
@@ -134,4 +138,40 @@ class ViewModel {
         }
     }
     
+    //to get simpsons' quote data
+    func getSimpsonsQuoteData() async {
+        //updating status
+        status = .fetching
+        
+        do {
+            //getting quote data using fetchQuote fn
+            quote = try await fetcher.fetchSimpsonsQuote()
+            
+            //setting status to success
+            status = .successQuote
+        } catch {
+            //setting status to failed if anything fails while fetching data from web
+            status = .failed(error: error)
+        }
+    }
+    
+    //get quote data by randomising between (BB/BCS/EC) and Simpsons, 80/20 % chances 
+    func getQuoteByRandomising(show: String) async {
+        //array of 1 to 5 and getting random number from it
+        var randomNumber = Array(1...5).randomElement()!
+        print(randomNumber)
+        
+        //if randomnumber is 5 then showig Simpsons data
+        if randomNumber == 5 {
+            //setting isSimpsonsQuote property
+            isSimpsonsQuote = true
+            //calling fn to get simpsons quote
+            await getSimpsonsQuoteData()
+        } else {
+            //setting isSimpsonsQuote property
+            isSimpsonsQuote = false
+            //calling fn to get BB/BCS/EC quote based on show
+            await getQuoteData(for: show)
+        }
+    }
 }
